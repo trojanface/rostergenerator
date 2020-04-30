@@ -9,7 +9,66 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+//asks what type of team member you're adding
+//asks common questions
+//asks specialised questions depending on type of member
+//returns a created object --can test that the object is created properly
+//in main script the created objects are stored in an array, once finished it loops over the array and generates html from it.
+//asks if you want to add another member if not then it tells main script to generate otherwise it calls its question method again.
+console.log("\nWelcome to team roster generator!\n")
+questionTime();
+async function questionTime() {
+    try {
+        const questData = await inquirer.prompt([
+            {
+                type: "input",
+                name: "employeeType",
+                message: "What type of employee would you like to add? (Manager, Engineer, Intern)",
+                //is validated as the user MUST supply their username.
+                validate: (input) => {
+                    if (input === "") {
+                        return "Must be answered";
+                    } else {
+                        if (input.toLowerCase() !== "manager" && input.toLowerCase() !== "engineer" && input.toLowerCase() !== "intern") {
+                            return "Must be either Manager, Engineer or Intern"
+                        } else {
+                            return true;
+                        }
+                    }
 
+                }
+            }
+        ]);
+        console.log(questData);
+    } catch (err) {
+        throw err;
+    }
+}
+
+
+
+function generateMember(name, id, email, role, specificV) {
+    switch (role) {
+        case "Employee":
+            return new Employee(name, id, email)
+            break;
+        case "Engineer":
+            return new Engineer(name, id, email, specificV)
+            break;
+        case "Intern":
+            return new Intern(name, id, email, specificV)
+            break;
+        case "Manager":
+            return new Manager(name, id, email, specificV)
+            break;
+        default:
+
+            break;
+    }
+
+}
+
+module.exports = generateMember();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
