@@ -24,19 +24,34 @@ async function addEmployee() {
     try {
         let questData;
         if (employees.length === 0) {
-        questData = await inquirer.prompt([
-            new Question("confirm","addAnother","Would you like to add an employee?")
-        ]);
-    } else {
-        questData = await inquirer.prompt([
-            new Question("confirm","addAnother","Would you like to add another employee?")
-        ]);
-    }
+            questData = await inquirer.prompt([
+                new Question("confirm", "addAnother", "Would you like to add an employee?")
+            ]);
+        } else {
+            questData = await inquirer.prompt([
+                new Question("confirm", "addAnother", "Would you like to add another employee?")
+            ]);
+        }
         if (questData.addAnother === true) {
             employeeType();
         } else {
-            console.log("\nExiting now"); //this will instead redirect to the gernate html function
+            
+            if (employees.length > 0) {
+                console.log("\nGenerating your roster HTML");
+            fs.writeFile("./output/team.html", render(employees), (err) => {
+                if (err) {
+                    throw err;
+                }
                 process.exit();
+            });
+        } else {
+            console.log("\nExiting without generating a roster");
+            process.exit();
+        }
+
+
+
+
         }
     } catch (err) {
         throw err;
@@ -46,9 +61,9 @@ async function addEmployee() {
 async function employeeType() {
     try {
         const questData = await inquirer.prompt([
-            
-                new Question("input","employeeType","What type of employee would you like to add? (Manager, Engineer, Intern)")
-                
+
+            new Question("input", "employeeType", "What type of employee would you like to add? (Manager, Engineer, Intern)")
+
         ]);
         for (property in questData) {//capitalises position title.        
             questData[property] = `${questData[property][0].toUpperCase()}${questData[property].substring(1)}`;
@@ -62,9 +77,9 @@ async function employeeType() {
 async function mainQuestions(role) {
     try {
         const questData = await inquirer.prompt([
-            new Question("input","employeeName","Employee name:"),
-            new Question("input","employeeID","Employee id:"),
-            new Question("input","employeeEmail","Employee email address:")
+            new Question("input", "employeeName", "Employee name:"),
+            new Question("input", "employeeID", "Employee id:"),
+            new Question("input", "employeeEmail", "Employee email address:")
         ]);
         specialisedQuestions(role, questData);
     } catch (err) {
@@ -80,17 +95,17 @@ async function specialisedQuestions(role, data) {
 
             case ("Manager"):
                 questData = await inquirer.prompt([
-                    new Question("input","specificInfo","Office number:")
+                    new Question("input", "specificInfo", "Office number:")
                 ]);
                 break;
             case ("Engineer"):
                 questData = await inquirer.prompt([
-                    new Question("input","specificInfo","Github username:")
+                    new Question("input", "specificInfo", "Github username:")
                 ]);
                 break;
             case ("Intern"):
                 questData = await inquirer.prompt([
-                    new Question("input","specificInfo","School:")
+                    new Question("input", "specificInfo", "School:")
                 ]);
                 break;
             default:
