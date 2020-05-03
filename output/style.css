@@ -1,0 +1,45 @@
+body {
+    /*Generated @ https://www.cssmatic.com/noise-texture*/
+    background-image: url("http://api.thumbr.it/whitenoise-361x370.png?background=a67212ff&noise=6b4a12&density=39&opacity=47");
+border-width: 3vw;
+border-style: solid;
+border-color: rgb(107, 43, 6);
+min-height: 100vh;
+}
+
+.team-heading {
+    background-color: #ff000000;
+    color: white;
+}
+
+.employee-card {
+    min-width: 278px;
+    max-width: 338px;
+    background-color:#ff000000;
+    padding-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-style: none;
+    transform: rotate(10);
+}
+
+.cardSection {
+    background-color: rgb(224, 213, 58);
+}
+
+.square {
+    width: 100%;
+    position: relative;
+}
+.idSection {
+    text-align: center;
+}
+
+.svgCircle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 20%;
+    z-index: 1;
+}

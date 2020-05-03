@@ -1,13 +1,28 @@
-<div class="card employee-card">
-    <div class="card-header">
-        <h2 class="card-title">{{ name }}</h2>
-        <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>{{ role }}</h3>
+<div class="card col-4 justify-content-center employee-card">
+  <svg class="svgCircle">
+    <circle fill="red" r="20px" cx="50%" cy="53%" />
+    <circle fill="darkred" r="13px" cx="52%" cy="52%" />
+    <circle fill="red" r="15px" cx="54%" cy="50%" />
+    </svg>
+    <div class="box">
+      <div class="square">
+        <div class="row">
+          <div class="col-6 cardSection idSection">
+            <h2 class="card-title">{{ name }}</h2>
+            <h4 class="card-title">
+                <i class="fas fa-user-graduate mr-2"></i>{{ role }}
+            </h4>
+          </div>
+          <div class="col-6 card-body cardSection">
+            <ul class="list-group">
+              <li class="list-group-item cardSection">ID: {{ id }}</li>
+              <li class="list-group-item cardSection">
+                Email: <a href="mailto:{{ email }}">{{ email }}</a>
+              </li>
+              <li class="list-group-item cardSection">School: {{ school }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <li class="list-group-item">ID: {{ id }}</li>
-            <li class="list-group-item">Email: <a href="mailto:{{ email }}">{{ email }}</a></li>
-            <li class="list-group-item">School: {{ school }}</li>
-        </ul>
-    </div>
-</div>
+  </div>

@@ -1,0 +1,6 @@
+//asks what type of team member you're adding
+//asks common questions
+//asks specialised questions depending on type of member
+//returns a created object --can test that the object is created properly
+//in main script the created objects are stored in an array, once finished it loops over the array and generates html from it.
+//asks if you want to add another member if not then it tells main script to generate otherwise it calls its question method again.
